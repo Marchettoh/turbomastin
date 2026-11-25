@@ -1,0 +1,52 @@
+name: Anteprima temporanea GitHub Pages
+on:
+  workflow_dispatch:
+    inputs:
+      authorize_preview:
+        description: "Pubblica l’anteprima pubblica autorizzata su turbomastin.dallaviaweb.it"
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: ${{ inputs.authorize_preview }}
+    runs-on: ubuntu-latest
+    env:
+      RELEASE: "false"
+      PUBLIC_PREVIEW: "true"
+      SITE_URL: "https://turbomastin.dallaviaweb.it"
+      BASE_PATH: "/"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: node scripts/preview-check.mjs
+      - run: npm run check
+      - run: npm run build
+      - run: node scripts/preview-check.mjs --built
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy anteprima
+        id: deployment
+        uses: actions/deploy-pages@v4

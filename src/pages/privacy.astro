@@ -1,0 +1,138 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { business as b, release } from "../data/business";
+---
+
+<Layout title="Privacy e cookie | TurboMastin" noindex={true}>
+  <article class="wrap legal">
+    <p class="eyebrow section-index">INFORMAZIONI SUL SITO</p><h1>
+      Privacy e cookie<span class="red">.</span>
+    </h1>
+    {
+      import.meta.env.RELEASE !== "true" && (
+        <p class="notice">
+          <strong>Bozza per revisione, non valida per il rilascio.</strong> Dati
+          del titolare, fornitori, basi giuridiche, trasferimenti e
+          conservazione devono essere completati e validati prima della
+          pubblicazione.
+        </p>
+      )
+    }
+    <h2>Titolare e contatti</h2><p>
+      Il titolare del trattamento è {
+        release.controller || "[titolare da confermare]"
+      }, con sede in {b.street}, {b.locality}. Ragione sociale: {
+        release.legalName || "[da confermare]"
+      }. Per richieste relative ai dati personali: <a href={`mailto:${b.email}`}
+        >{b.email}</a
+      >.
+    </p>
+    <h2>Navigazione e hosting</h2><p>
+      Il sito presenta l’attività e non contiene moduli, account, prenotazioni,
+      analytics o pixel pubblicitari. Il fornitore di hosting può trattare
+      indirizzo IP, data e ora delle richieste e informazioni tecniche del
+      browser per erogare e proteggere il servizio.
+    </p><p>
+      Fornitore di hosting: {
+        import.meta.env.PUBLIC_PREVIEW === "true"
+          ? "GitHub Pages (sola anteprima temporanea)"
+          : release.hostingProvider || "[da confermare prima del rilascio]"
+      }. Ruoli, destinatari, base giuridica del trattamento tecnico,
+      localizzazione dei dati e garanzie per eventuali trasferimenti extra SEE:
+      da verificare contrattualmente prima della pubblicazione.
+    </p>
+    <h2>Telefono, email e WhatsApp</h2><p>
+      Se contatti l’officina, i recapiti e le informazioni che scegli di
+      comunicare vengono utilizzati per gestire la tua richiesta e, quando
+      pertinente, le misure precontrattuali o il rapporto contrattuale (art. 6,
+      par. 1, lett. b GDPR); eventuali obblighi di legge si basano sulla lett.
+      c. Basi giuridiche, persone autorizzate e organizzazione effettiva devono
+      essere validati dal titolare.
+    </p><p>
+      Il collegamento WhatsApp usa il numero {b.whatsapp} e apre un servizio esterno
+      solo su tua iniziativa. Non è un widget incorporato e il sito non legge messaggi
+      o rubrica. L’uso di WhatsApp è soggetto alla sua informativa e ai suoi termini;
+      puoi scegliere in alternativa telefono o email. Vanno censiti il gestore della
+      casella Tiscali e il servizio WhatsApp effettivamente utilizzato dall’officina,
+      con i rispettivi ruoli, conservazione e garanzie.
+    </p>
+    <h2 id="cookies">Cookie, memoria del browser e consenso</h2><p>
+      Font, grafica, testi e recensioni selezionate sono serviti localmente. Il
+      codice del sito non imposta cookie propri e non usa sessionStorage. Dopo
+      una tua scelta, salva nel localStorage la chiave tecnica <code
+        >turbomastin:privacy:v1</code
+      >: contiene versione della scelta, autorizzazione a Google Maps e date di
+      salvataggio e scadenza. La durata implementata è di sei mesi. Serve
+      soltanto a ricordare la scelta, anche negativa; non identifica il
+      visitatore per finalità pubblicitarie.
+    </p><p>
+      Prima di una scelta non viene salvata alcuna preferenza e Google Maps non
+      viene caricato. “Rifiuta facoltativi” mantiene bloccata la mappa; “Accetta
+      tutti” consente l’unico contenuto facoltativo presente, Google Maps. In
+      “Personalizza” puoi autorizzarlo o meno e salvare. La categoria non è
+      preselezionata al primo accesso. Se la memoria locale non è disponibile la
+      scelta vale solo per la pagina corrente.
+    </p>
+    <h2>Google Maps, facoltativo</h2><p>
+      La mappa incorporata viene richiesta ai server Google soltanto dopo il
+      consenso. Può trasmettere a Google indirizzo IP, dati del browser e del
+      dispositivo, origine del sito e interazioni con la mappa; Google può
+      utilizzare cookie o altri strumenti secondo la propria configurazione e
+      informativa. Il consenso è la base prevista per il caricamento facoltativo
+      (art. 6, par. 1, lett. a GDPR e art. 122 Codice Privacy, ove applicabile).
+    </p><p>
+      Google è il fornitore del servizio esterno. Entità contrattuali, ruoli,
+      destinatari, eventuali trasferimenti e garanzie applicabili devono essere
+      validati dal titolare sulla documentazione del fornitore prima del
+      rilascio. Per dettagli aggiornati consulta la <a
+        href="https://policies.google.com/privacy?hl=it"
+        target="_blank"
+        rel="noopener noreferrer">Privacy Policy di Google (nuova scheda)</a
+      >. Nomi, finalità e durate degli eventuali cookie Google possono variare
+      in base a browser, account e interazioni: l’inventario va riconfermato
+      sull’hosting definitivo, senza attribuire durate non verificate.
+    </p><p>
+      Puoi modificare o revocare la scelta tramite “Preferenze cookie” nel
+      footer o <a href="#cookies" data-consent-open>aprendo qui le preferenze</a
+      >. La revoca rimuove la mappa e blocca i successivi caricamenti. Non può
+      annullare dati già trasmessi né cancellare cookie sui domini Google: per
+      questi usa le impostazioni del browser o gli strumenti del fornitore. Il
+      link esterno “Ottieni indicazioni” resta disponibile anche senza consenso
+      alla mappa incorporata.
+    </p>
+    <h2>Recensioni e collegamenti esterni</h2><p>
+      Il sito mostra una selezione manuale di brevi estratti pubblicati sulla
+      scheda Google Maps dell’officina, con attribuzione dell’autore, fonte e
+      data di consultazione. Non carica un widget recensioni e non promette un
+      aggiornamento automatico. La base giuridica e le condizioni per la
+      ripubblicazione dei nomi e degli estratti devono essere valutate dal
+      titolare prima del rilascio. Non vengono mostrati ritratti o dati di
+      contatto degli autori.
+    </p><p>
+      I link verso Google Maps e WhatsApp aprono i servizi esterni solo su tua
+      richiesta. Telefono ed email aprono l’applicazione scelta sul dispositivo.
+      I servizi esterni applicano le rispettive informative e condizioni.
+    </p>
+    <h2>Conservazione e destinatari</h2><p>
+      La sola preferenza tecnica ha la durata descritta sopra. Tempi o criteri
+      di conservazione di messaggi, log e altre informazioni: {
+        release.retention || "[da definire con titolare e fornitori]"
+      }. Persone autorizzate, eventuali responsabili e trasferimenti: da
+      completare con l’effettiva organizzazione e i contratti dei fornitori.
+    </p>
+    <h2>I tuoi diritti</h2><p>
+      Nei casi previsti dal GDPR puoi chiedere accesso, rettifica,
+      cancellazione, limitazione e portabilità dei dati, nonché opporti al
+      trattamento quando applicabile. Puoi revocare il consenso senza
+      pregiudicare la liceità del trattamento precedente e presentare reclamo al
+      Garante per la protezione dei dati personali. Per esercitare i diritti
+      scrivi a <a href={`mailto:${b.email}`}>{b.email}</a>. Il conferimento dei
+      dati di contatto è facoltativo, ma quelli necessari a risponderti servono
+      per gestire la richiesta. Il sito non effettua profilazione o processi
+      decisionali automatizzati propri.
+    </p>
+    <a class="text-link" href={import.meta.env.BASE_URL}
+      >Torna alla homepage <span aria-hidden="true">↗</span></a
+    >
+  </article>
+</Layout>

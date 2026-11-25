@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Pagina non trovata | TurboMastin" noindex={true}
+  ><section class="wrap legal error-page">
+    <p class="eyebrow section-index">ERRORE 404</p><h1>
+      Qui non c’è<br />la pagina che cerchi.
+    </h1><p>
+      Puoi tornare alla homepage per trovare servizi e contatti dell’officina.
+    </p><a class="button" href={import.meta.env.BASE_URL}
+      >Torna alla homepage <span aria-hidden="true">↗</span></a
+    >
+  </section></Layout
+>

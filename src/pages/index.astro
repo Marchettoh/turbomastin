@@ -1,0 +1,205 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Mechanical from "../components/Mechanical.astro";
+import Gallery from "../components/Gallery.astro";
+import ExternalMap from "../components/ExternalMap.astro";
+import Reviews from "../components/Reviews.astro";
+import WorkStory from "../components/WorkStory.astro";
+import { business as b, services } from "../data/business";
+import { photos } from "../data/photos";
+const mainPhoto = photos[0];
+---
+
+<Layout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span aria-hidden="true">✦</span> Officina multimarca · San Pietro in Cariano
+        </p>
+        <h1 id="hero-title">La tua auto,<br />in buone<br /><em>mani.</em></h1>
+        <p class="hero-description">
+          Tagliandi, riparazioni e controllo centraline. Per la tua auto, di
+          qualsiasi marca.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href={b.tel}
+            >Chiama l’officina <span aria-hidden="true">↗</span></a
+          ><a class="text-link" href="#servizi"
+            >I nostri servizi <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <div class="hero-photo-frame">
+          <Picture
+            src={mainPhoto.image}
+            formats={["avif", "webp"]}
+            fallbackFormat="jpg"
+            widths={[480, 768, 1125]}
+            sizes="(max-width: 760px) 90vw, 52vw"
+            alt={mainPhoto.alt}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <figcaption>
+          <span
+            >Motori, attrezzi.<br /><strong>E tanta esperienza.</strong></span
+          ><a href="#officina" aria-label="Scopri l’officina"
+            ><span aria-hidden="true">↙</span></a
+          >
+        </figcaption>
+      </figure>
+    </div>
+    <div class="wrap hero-foot">
+      <p>{b.street} <span aria-hidden="true">/</span> {b.locality}</p><span
+        >Ci prendiamo cura del tuo veicolo.</span
+      >
+    </div>
+  </section>
+  <div class="engine-strip">
+    <div class="wrap">
+      <p>QUALSIASI MOTORE.<br /><strong>LA STESSA CURA.</strong></p><ul
+        aria-label="Motorizzazioni assistite"
+      >
+        <li>Benzina</li><li>Diesel</li><li>Metano</li><li>GPL</li>
+      </ul>
+    </div>
+  </div>
+  <section
+    id="servizi"
+    class="services section-pad"
+    aria-labelledby="services-title"
+  >
+    <div class="wrap">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">IL NOSTRO LAVORO</p><h2 id="services-title">
+            Ci occupiamo<br />della tua auto.
+          </h2>
+        </div><p>
+          Assistenza multimarca per auto<br class="desktop-break" /> a benzina, diesel,
+          metano e GPL.<br class="desktop-break" /> Ecco come possiamo aiutarti.
+        </p>
+      </div>
+      <div class="service-list">
+        {
+          services.map((service, i) => (
+            <article class="service-row">
+              <>
+                <span class="service-number" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <div>
+                  <>
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                  </>
+                </div>
+              </>
+            </article>
+          ))
+        }
+      </div>
+      <WorkStory />
+      <div class="services-end">
+        <p>Hai bisogno di un intervento?</p><a
+          class="button button-cream"
+          href={b.tel}
+          >Parliamone al telefono <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </div>
+  </section>
+  <section
+    id="officina"
+    class="workshop section-pad"
+    aria-labelledby="workshop-title"
+  >
+    <div class="wrap">
+      <div class="workshop-grid">
+        <div class="workshop-title">
+          <p class="eyebrow section-index">L’OFFICINA</p><h2
+            id="workshop-title"
+          >
+            L’esperienza<br />si vede.<br /><em>E si sente.</em>
+          </h2><Mechanical />
+        </div><div class="workshop-copy">
+          <p class="lead">
+            Un’esperienza pluridecennale nell’assistenza agli autoveicoli.
+          </p><p>
+            TurboMastin si occupa di tagliandi, riparazioni, controllo
+            centraline e preparazione del veicolo alla revisione.
+          </p><p>
+            Qualsiasi sia la marca e il modello, la tua auto è in buone mani.
+          </p><a class="text-link" href="#contatti"
+            >Ci trovi a San Pietro in Cariano <span aria-hidden="true">↗</span
+            ></a
+          >
+        </div>
+      </div>
+      <Gallery />
+    </div>
+  </section>
+  <Reviews />
+  <section
+    id="contatti"
+    class="contact section-pad"
+    aria-labelledby="contact-title"
+  >
+    <div class="wrap">
+      <div class="contact-heading">
+        <p class="eyebrow">FACCIAMO DUE PAROLE</p><h2 id="contact-title">
+          La tua auto?<br /><em>Parliamone.</em>
+        </h2><p>
+          Per informazioni sui servizi o per parlare<br class="desktop-break" />
+          della tua auto, chiama l’officina.
+        </p><a class="big-phone" href={b.tel}
+          >{b.phone} <span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h3>Passa a trovarci</h3><p>{b.street}<br />{b.locality}</p><a
+            class="button button-outline"
+            href={b.directions}
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ottieni indicazioni <span class="sr-only"
+              >(Google Maps, nuova scheda)</span
+            ><span aria-hidden="true">↗</span></a
+          >
+        </div><div>
+          <h3>I nostri orari</h3><dl class="hours">
+            {
+              b.hours.map(([day, time]) => (
+                <div>
+                  <>
+                    <dt>{day}</dt>
+                    <dd>{time}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+        </div><div>
+          <h3>Preferisci scrivere?</h3>
+          <a
+            class="button button-cream whatsapp-contact"
+            href={b.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            >Scrivici su WhatsApp <span class="sr-only"
+              >al {b.whatsapp} (nuova scheda)</span
+            ><span aria-hidden="true">↗</span></a
+          >
+          <p class="contact-note">WhatsApp: {b.whatsapp}</p>
+          <a class="email" href={`mailto:${b.email}`}>{b.email}</a>
+        </div>
+      </div>
+      <ExternalMap />
+    </div>
+  </section>
+</Layout>

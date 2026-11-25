@@ -1,0 +1,44 @@
+---
+import { business as b } from "../data/business";
+---
+
+<section
+  class="external-map"
+  aria-labelledby="map-title"
+  data-map-src={b.mapEmbed}
+>
+  <div class="map-heading">
+    <h3 id="map-title">Ci trovi qui.</h3><a
+      href={b.directions}
+      target="_blank"
+      rel="noopener noreferrer"
+      >Apri Google Maps <span class="sr-only">(nuova scheda)</span><span
+        aria-hidden="true">↗</span
+      ></a>
+  </div>
+  <div class="map-frame">
+    <div class="map-placeholder" data-map-placeholder>
+      <span class="eyebrow">GOOGLE MAPS · CONTENUTO FACOLTATIVO</span><p>
+        {b.street}<br />{b.locality}
+      </p><p class="map-explanation">
+        La mappa è bloccata finché non consenti il caricamento di Google Maps.
+        Puoi sempre usare il link esterno per le indicazioni.
+      </p><button
+        type="button"
+        class="button button-cream"
+        data-consent-open
+        hidden>Scegli se caricare la mappa</button
+      ><noscript
+        ><p>
+          Per gestire il consenso occorre JavaScript. Puoi comunque aprire il
+          link esterno alla mappa.
+        </p></noscript>
+    </div><div data-map-content></div>
+  </div>
+  <div class="map-caption">
+    <p data-map-status aria-live="polite">
+      Mappa non caricata: nessun collegamento a Google da questo riquadro.
+    </p><button type="button" class="map-preferences" data-consent-open hidden
+      >Rivedi il consenso</button>
+  </div>
+</section>

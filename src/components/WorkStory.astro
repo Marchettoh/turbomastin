@@ -1,0 +1,99 @@
+---
+import { Picture } from "astro:assets";
+import { workStory } from "../data/photos";
+const live = import.meta.env.RELEASE === "true";
+const stages = ["Prima", "Durante", "Risultato"];
+const complete =
+  workStory.photos.length === 3 &&
+  stages.every((stage) =>
+    workStory.photos.some(
+      (photo) =>
+        photo.stage === stage &&
+        photo.alt.trim() &&
+        photo.caption.trim() &&
+        photo.source.trim(),
+    ),
+  );
+const orderedPhotos = stages.map(
+  (stage) => workStory.photos.find((photo) => photo.stage === stage)!,
+);
+---
+
+{
+  (!live || complete) && (
+    <section
+      class="work-story"
+      aria-labelledby="story-title"
+      data-preview={!complete ? "true" : undefined}
+    >
+      <div class="story-heading">
+        <div>
+          <>
+            <p class="eyebrow">IL LAVORO IN TRE SCATTI</p>
+            <h3 id="story-title">{workStory.title}</h3>
+          </>
+        </div>
+        {!complete ? (
+          <p class="story-note">
+            Anteprima · Foto da aggiungere
+            <br />
+            Tre momenti dello stesso intervento.
+          </p>
+        ) : (
+          workStory.description && (
+            <p class="story-note">{workStory.description}</p>
+          )
+        )}
+      </div>
+      <div class="story-frames">
+        {complete
+          ? orderedPhotos.map((photo, index) => (
+              <figure class="story-frame">
+                <a
+                  href={photo.image.src}
+                  data-gallery
+                  data-caption={photo.caption}
+                  data-alt={photo.alt}
+                  aria-label={`Ingrandisci: ${photo.caption}`}
+                >
+                  <Picture
+                    src={photo.image}
+                    formats={["avif", "webp"]}
+                    fallbackFormat="jpg"
+                    widths={[320, 480, 768].filter(
+                      (width) => width <= photo.image.width,
+                    )}
+                    sizes="(max-width: 760px) 85vw, 28vw"
+                    alt={photo.alt}
+                    loading="lazy"
+                  />
+                  <span class="story-enlarge" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+                <figcaption>
+                  <span class="story-stage">
+                    <span>0{index + 1}</span> {photo.stage}
+                  </span>
+                  <p>{photo.caption}</p>
+                </figcaption>
+              </figure>
+            ))
+          : stages.map((stage, index) => (
+              <figure class="story-frame">
+                <div class="story-placeholder">
+                  <span class="placeholder-corner" aria-hidden="true" />
+                  <span>Fotografia da inserire</span>
+                  <span class="placeholder-corner" aria-hidden="true" />
+                </div>
+                <figcaption>
+                  <span class="story-stage">
+                    <span>0{index + 1}</span> {stage}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+      </div>
+    </section>
+  )
+}

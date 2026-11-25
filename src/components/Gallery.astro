@@ -1,0 +1,119 @@
+---
+import { Picture, getImage } from "astro:assets";
+import { photos } from "../data/photos";
+const gallery = await Promise.all(
+  photos.map(async (photo) => ({
+    ...photo,
+    full: await getImage({
+      src: photo.image,
+      format: "webp",
+      width: photo.image.width,
+    }),
+  })),
+);
+---
+
+<div class="gallery" id="foto">
+  <div class="gallery-heading">
+    <h3>Dentro l’officina</h3><span
+      >FOTOGRAFIE / {String(gallery.length).padStart(2, "0")}</span
+    >
+  </div>
+  <div
+    class:list={["gallery-grid", { "gallery-single": gallery.length === 1 }]}
+  >
+    {
+      gallery.map((photo, index) => (
+        <figure class="gallery-item">
+          <>
+            <a
+              href={photo.full.src}
+              data-gallery
+              data-caption={photo.caption}
+              data-alt={photo.alt}
+              aria-label={`Ingrandisci: ${photo.caption}`}
+            >
+              <>
+                <Picture
+                  src={photo.image}
+                  formats={["avif", "webp"]}
+                  fallbackFormat="jpg"
+                  widths={[480, 768, 1125]}
+                  sizes={
+                    gallery.length === 1
+                      ? "(max-width: 1280px) 90vw, 1200px"
+                      : "(max-width: 760px) 90vw, 45vw"
+                  }
+                  alt={photo.alt}
+                  loading="lazy"
+                />
+                <span class="gallery-zoom" aria-hidden="true">
+                  Ingrandisci <span>↗</span>
+                </span>
+              </>
+            </a>
+            <figcaption>
+              <>
+                <span>
+                  {String(index + 1).padStart(2, "0")} / {photo.caption}
+                </span>
+                <span>TURBOMASTIN</span>
+              </>
+            </figcaption>
+          </>
+        </figure>
+      ))
+    }
+  </div>
+</div>
+<dialog class="photo-dialog" aria-labelledby="photo-caption">
+  <div class="dialog-toolbar">
+    <p id="photo-caption"></p><button
+      type="button"
+      class="dialog-close"
+      autofocus>Chiudi <span aria-hidden="true">×</span></button
+    >
+  </div>
+  <div class="dialog-photo"></div>
+</dialog>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>(".photo-dialog");
+  const caption = document.querySelector<HTMLElement>("#photo-caption");
+  const holder = document.querySelector<HTMLElement>(".dialog-photo");
+  let opener: HTMLAnchorElement | null = null;
+  if (dialog && caption && holder) {
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-gallery]")
+      .forEach((link) => {
+        link.addEventListener("click", (event) => {
+          if (
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey ||
+            !dialog.showModal
+          )
+            return;
+          event.preventDefault();
+          opener = link;
+          const image = document.createElement("img");
+          image.src = link.href;
+          image.alt = link.dataset.alt || "";
+          holder.replaceChildren(image);
+          caption.textContent = link.dataset.caption || "";
+          dialog.showModal();
+          document.documentElement.classList.add("photo-open");
+        });
+      });
+    dialog
+      .querySelector(".dialog-close")
+      ?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      document.documentElement.classList.remove("photo-open");
+      opener?.focus({ preventScroll: true });
+    });
+  }
+</script>

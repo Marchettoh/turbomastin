@@ -1,0 +1,70 @@
+---
+const privacy = `${import.meta.env.BASE_URL}privacy/#cookies`;
+---
+
+<aside class="consent-banner" aria-labelledby="consent-title" hidden>
+  <p class="eyebrow">PRIVACY, SENZA SORPRESE</p><h2 id="consent-title">
+    La scelta è tua.
+  </h2>
+  <p>
+    Usiamo risorse locali e, solo se lo consenti, Google Maps. La mappa può
+    trasmettere dati a Google e usare cookie. Nessun analytics o pubblicità.
+  </p>
+  <a class="consent-policy" href={privacy}>Leggi l’informativa cookie</a>
+  <div class="consent-actions">
+    <button type="button" data-consent-reject>Rifiuta facoltativi</button
+    ><button type="button" data-consent-accept>Accetta tutti</button><button
+      type="button"
+      data-consent-open>Personalizza</button>
+  </div>
+</aside>
+<dialog class="consent-dialog" aria-labelledby="preferences-title">
+  <div class="consent-dialog-heading">
+    <h2 id="preferences-title">Preferenze privacy</h2><button
+      type="button"
+      class="consent-close"
+      aria-label="Chiudi preferenze">×</button>
+  </div>
+  <p>
+    Puoi cambiare idea in qualsiasi momento dal link “Preferenze cookie” nel
+    footer.
+  </p>
+  <div class="consent-category">
+    <div>
+      <h3>Funzionamento del sito</h3><strong>Sempre necessario</strong>
+    </div><p>
+      Risorse locali e, dopo la tua scelta, una preferenza tecnica salvata nel
+      browser per sei mesi. Non viene usata per profilarti.
+    </p>
+  </div>
+  <div class="consent-category">
+    <label class="consent-switch" for="consent-maps"
+      ><span>Contenuti esterni · Google Maps</span><input
+        id="consent-maps"
+        type="checkbox"
+      /></label
+    ><p>
+      Permette di caricare la mappa. Google riceve dati tecnici come indirizzo
+      IP e informazioni del browser e può utilizzare cookie, secondo le proprie
+      condizioni. Categoria facoltativa, disattivata fino al consenso.
+    </p>
+  </div>
+  <p class="consent-revoke-note">
+    Revocando il consenso rimuoviamo la mappa e ne blocchiamo i successivi
+    caricamenti. Non possiamo cancellare cookie già impostati sui domini Google:
+    puoi gestirli nelle impostazioni del browser.
+  </p>
+  <a class="consent-policy" href={privacy}
+    >Informativa e dettagli sui fornitori</a
+  >
+  <div class="consent-actions">
+    <button type="button" data-consent-save>Salva preferenze</button><button
+      type="button"
+      data-consent-reject>Rifiuta facoltativi</button
+    ><button type="button" data-consent-accept>Accetta tutti</button>
+  </div>
+</dialog>
+<p class="sr-only" id="consent-status" role="status" aria-live="polite"></p>
+<script>
+  import "../scripts/consent";
+</script>

@@ -1,0 +1,172 @@
+---
+import { reviewSelection as selection } from "../data/reviews";
+import { business as b } from "../data/business";
+---
+
+<section class="reviews section-pad" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <div class="reviews-heading">
+      <div>
+        <p class="eyebrow section-index">DALLA SCHEDA GOOGLE MAPS</p><h2
+          id="reviews-title"
+        >
+          Le parole<br />di chi ci sceglie.
+        </h2>
+      </div><p>
+        Una selezione di recensioni pubblicate su Google.<br />Puoi leggerle per
+        intero sulla scheda dell’officina.
+      </p>
+    </div>
+    <div class="reviews-grid">
+      {
+        selection.reviews.map((review) => (
+          <figure class="review">
+            <>
+              <div
+                class="review-rating"
+                role="img"
+                aria-label={`${review.rating} stelle su 5`}
+              >
+                {Array.from({ length: 5 }, (_, index) => (
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    focusable="false"
+                    class:list={{ filled: index < review.rating }}
+                  >
+                    <path d="m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9.6l6.3-.9Z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote>
+                <p>«{review.quote}»</p>
+              </blockquote>
+              <figcaption>
+                <>
+                  <cite>{review.author}</cite>
+                  <p>{review.relativeDate}</p>
+                  <a
+                    href={b.googleProfile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Estratto · Leggi su Google{" "}
+                    <>
+                      <span class="sr-only">(nuova scheda)</span>
+                      <span aria-hidden="true">↗</span>
+                    </>
+                  </a>
+                </>
+              </figcaption>
+            </>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="reviews-source">
+      Fonte: scheda Google Maps di TurboMastin · Consultata il <time
+        datetime={selection.consultedAt}>{selection.consultedLabel}</time
+      >. Selezione aggiornata manualmente, non un feed in tempo reale.
+    </p>
+  </div>
+</section>
+<style>
+  .reviews {
+    background: #e7e0cf var(--texture);
+  }
+  .reviews-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .reviews-heading .eyebrow {
+    margin-bottom: 18px;
+  }
+  .reviews-heading > p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 340px;
+  }
+  .reviews h2 {
+    font-size: clamp(32px, 4vw, 54px);
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .review {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    border-top: 1px solid #8a938a;
+  }
+  .review-rating {
+    display: flex;
+    gap: 4px;
+    color: #806123;
+    margin: 2px 0 15px;
+  }
+  .review-rating svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .review-rating svg.filled {
+    fill: currentColor;
+  }
+  blockquote {
+    margin: 5px 0 25px;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  figcaption {
+    margin-top: auto;
+    font-size: 11px;
+  }
+  cite {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  figcaption p {
+    font-size: 10px;
+    color: var(--muted);
+    margin-block: 7px;
+  }
+  figcaption a {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 44px;
+    border-bottom: 1px solid currentColor;
+  }
+  .reviews-source {
+    border-top: 1px solid #b7b6a6;
+    margin-top: 35px;
+    padding-top: 20px;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  @media (max-width: 760px) {
+    .reviews-heading {
+      display: block;
+    }
+    .reviews-heading > p {
+      margin-top: 22px;
+    }
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    blockquote {
+      margin-bottom: 20px;
+    }
+  }
+</style>

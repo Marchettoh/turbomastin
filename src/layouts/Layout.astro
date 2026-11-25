@@ -1,0 +1,227 @@
+---
+import "@fontsource/alfa-slab-one/latin-400.css";
+import displayFont from "@fontsource/alfa-slab-one/files/alfa-slab-one-latin-400-normal.woff2?url";
+import "@fontsource/dm-sans/latin-400.css";
+import "@fontsource/dm-sans/latin-500.css";
+import "../styles/global.css";
+import "../styles/privacy.css";
+import CookieConsent from "../components/CookieConsent.astro";
+import { business as b, release } from "../data/business";
+const {
+  title = "TurboMastin | Officina a San Pietro in Cariano",
+  description = "Tagliandi, riparazioni, controllo centraline e preparazione alla revisione. TurboMastin, a San Pietro in Cariano. Chiama " +
+    b.phone +
+    ".",
+  noindex = false,
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const home = base;
+const live = import.meta.env.RELEASE === "true";
+const canonical = live
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : undefined;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" /><meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta name="theme-color" content="#284b54" /><title>{title}</title>
+    <link
+      rel="preload"
+      href={displayFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta name="description" content={description} /><meta
+      name="robots"
+      content={!live || noindex ? "noindex, nofollow" : "index, follow"}
+    />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} /><meta
+      property="og:description"
+      content={description}
+    /><meta property="og:type" content="website" /><meta
+      property="og:locale"
+      content="it_IT"
+    />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    {
+      live && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AutoRepair",
+            name: b.name,
+            url: Astro.site,
+            telephone: b.tel.slice(4),
+            email: b.email,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: b.street,
+              addressLocality: "San Pietro in Cariano",
+              postalCode: "37029",
+              addressRegion: "VR",
+              addressCountry: "IT",
+            },
+          })}
+        />
+      )
+    }
+  </head>
+  <body>
+    <a class="skip" href="#contenuto">Vai al contenuto</a>
+    {
+      !live && import.meta.env.PUBLIC_PREVIEW === "true" && (
+        <aside
+          class="public-preview-notice"
+          aria-label="Stato dell’anteprima"
+          data-public-preview
+        >
+          <div class="wrap">
+            <>
+              <strong>Anteprima temporanea</strong>
+              <span>
+                Sito in revisione · contenuti e informative non definitivi.
+              </span>
+            </>
+          </div>
+        </aside>
+      )
+    }
+    <header class="header">
+      <div class="wrap header-inner">
+        <a class="wordmark" href={home} aria-label="TurboMastin — Homepage"
+          >Turbo<span>Mastin</span><i aria-hidden="true">.</i></a
+        >
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="navigation"
+          hidden>Menu <span aria-hidden="true">+</span></button
+        >
+        <nav id="navigation" aria-label="Navigazione principale">
+          <a href={`${home}#servizi`}>Servizi</a><a href={`${home}#officina`}
+            >L’officina</a
+          ><a href={`${home}#contatti`}>Contatti</a>
+        </nav>
+        <div class="header-actions">
+          <a class="header-call" href={b.tel}
+            >Chiama l’officina <span aria-hidden="true">↗</span></a
+          >
+          <a
+            class="header-call header-whatsapp"
+            href={b.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Scrivici su WhatsApp al ${b.whatsapp} (nuova scheda)`}
+          >
+            <span class="header-wa-label" aria-hidden="true">WhatsApp</span>
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+              focusable="false"
+              ><path
+                d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"
+              ></path><path
+                d="M8 7.5c.5 4.4 2.5 6.4 6.9 7l1.1-2-2.5-1-1 1c-1.1-.5-2-1.4-2.5-2.5l1-1-1-2.5Z"
+              ></path></svg
+            >
+          </a>
+        </div>
+      </div>
+    </header>
+    <main id="contenuto" tabindex="-1"><slot /></main>
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="wordmark" href={home}
+            >Turbo<span>Mastin</span><i aria-hidden="true">.</i></a
+          ><p>Ci prendiamo cura del tuo veicolo.</p><a href="#contenuto"
+            >Torna su ↑</a
+          >
+        </div>
+        <div class="footer-bottom">
+          <p>{b.street}<br />{b.locality}</p><p>
+            <a href={b.tel}>{b.phone}</a><br /><a href={`mailto:${b.email}`}
+              >{b.email}</a
+            ><br /><a
+              href={b.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              >WhatsApp: {b.whatsapp}<span class="sr-only">
+                (nuova scheda)</span
+              ></a
+            >
+          </p><div>
+            <a href={`${base}privacy/`}>Privacy e cookie</a><br /><a
+              href={`${base}privacy/#cookies`}
+              data-consent-open
+              data-consent-footer>Preferenze cookie</a
+            ><br />{
+              !live && (
+                <span class="draft">
+                  Anteprima · Dati societari e fiscali da confermare
+                </span>
+              )
+            }{
+              live && (
+                <span>
+                  {release.legalName} · {release.fiscalDetails}
+                </span>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </footer>
+    <CookieConsent />
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+      const nav = document.querySelector<HTMLElement>("#navigation");
+      if (toggle && nav) {
+        toggle.hidden = false;
+        const close = () => {
+          toggle.setAttribute("aria-expanded", "false");
+          nav.classList.remove("open");
+        };
+        toggle.addEventListener("click", () => {
+          const open = toggle.getAttribute("aria-expanded") !== "true";
+          toggle.setAttribute("aria-expanded", String(open));
+          nav.classList.toggle("open", open);
+        });
+        nav
+          .querySelectorAll("a")
+          .forEach((link) => link.addEventListener("click", close));
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            toggle.getAttribute("aria-expanded") === "true"
+          ) {
+            close();
+            toggle.focus();
+          }
+        });
+        document.addEventListener("click", (event) => {
+          if (!(event.target as HTMLElement).closest(".header")) close();
+        });
+        document.addEventListener("focusin", (event) => {
+          if (!(event.target as HTMLElement).closest(".header")) close();
+        });
+        matchMedia("(min-width: 761px)").addEventListener("change", close);
+        document.documentElement.classList.add("js");
+      }
+    </script>
+  </body>
+</html>

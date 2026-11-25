@@ -1,0 +1,34 @@
+RECUPERO TESTUALE PARZIALE — 25 novembre 2026
+Fonti visitate: https://turbomastin.altervista.org/ e https://turbomastin.altervista.org/?page_id=55
+Questo non è un backup completo WordPress né un archivio delle fotografie. Screenshot menzionato nel brief non disponibile nella sessione. Nessun asset fotografico recuperato o riutilizzato. Prima della migrazione richiedere export WordPress XML, database e wp-content al titolare/gestore, con autorizzazione e gestione sicura degli eventuali dati personali. Non inserirli nel repository pubblico.
+
+HOME
+TurboMastin
+Ci prendiamo cura del vostro veicolo.
+Apply for Admission [vecchio link #, da eliminare]
+Qualsiasi marca di veicolo
+La vostra autovettura è in buone mani qualsiasi sia la marca ed il modello.
+Benzina Diesel Metano e GPL
+Tagliandi riparazioni e controllo centraline per tutti i tipi di motore.
+Chi siamo
+Una esperienza pluridecennale nell’assistenza agli autoveicoli. Eseguiamo tagliandi e prepariamo il vostro veicolo alla revisione.
+Contatti
+045 770 4390
+turbomastin@tiscali.it
+Via Thomas Alva Edison, 11, 37029 San Pietro In Cariano VR
+Lun - Ven 9:00 - 19:30
+Sabato 9:00 - 12:30
+WordPress Theme - Total di HashThemes [credito tema, non trasferito]
+Banner cookie WordPress presente. Pulsante WhatsApp visibile nella lettura, nessun URL di contatto verificato.
+
+CONTATTACI (?page_id=55)
+Lascia qui un messaggio , ti ricontatteremo noi.
+Indirizzo, telefono ed email coincidenti con la home.
+Modulo con nome, cognome, email, oggetto e messaggio, Submit. Non trasferito: nuova versione senza backend né modulo.
+Footer e banner coincidenti con la home.
+
+INVENTARIO URL OSSERVATI, NON CRAWL COMPLETO
+/ -> nuova homepage
+/?page_id=55 -> nuova sezione /#contatti
+#ht-content -> vecchia ancora skip link
+Altri URL, permalink, media e indicizzazione da inventariare tramite export e Search Console del titolare. Nessuna pretesa di completezza.

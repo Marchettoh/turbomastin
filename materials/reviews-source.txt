@@ -1,0 +1,9 @@
+Recensioni consultate il 25 novembre 2026 sulla scheda Google Maps fornita dal committente:
+https://maps.app.goo.gl/ideACBpEpoDJtJEB9
+Identificativo scheda presente anche nell'iframe fornito: 0x4781e4970618e90f:0x2388340ab43ce7b5
+
+Consultazione diretta tramite Chromium/Playwright, non directory terze. Nome, indirizzo e numero fisso corrispondono al brief. Screenshot locale di riscontro: artifacts/google-profile-reference.png.
+
+La scheda ha reso visibili recensioni di Cristina C. (2 anni fa), Marius Lindner (5 anni fa), Margherita Olivieri (4 anni fa). I tempi sono quelli relativi mostrati da Google alla data di consultazione, non date esatte dedotte. Gli estratti selezionati sono in src/data/reviews.ts; non vengono copiate foto profilo, testi integrali o contatti. Le citazioni sono attribuite agli autori e collegate alla scheda sorgente. Non sono dichiarate come esperienze verificate dall'officina.
+
+Selezione statica/manuale, non feed aggiornato automaticamente, non necessariamente le recensioni più recenti. Nessun totale, valutazione aggregata o rating viene aggiunto ai dati strutturati. Riconfermare contenuti e permanenza delle recensioni, attribuzioni, base giuridica e condizioni della ripubblicazione prima del rilascio. release.reviewSelectionApproved rimane false. Nessun account o servizio a pagamento è stato attivato.
