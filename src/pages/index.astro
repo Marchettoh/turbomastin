@@ -3,7 +3,6 @@ import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Mechanical from "../components/Mechanical.astro";
 import Gallery from "../components/Gallery.astro";
-import ExternalMap from "../components/ExternalMap.astro";
 import Reviews from "../components/Reviews.astro";
 import WorkStory from "../components/WorkStory.astro";
 import { business as b, services } from "../data/business";
@@ -11,7 +10,7 @@ import { photos } from "../data/photos";
 const mainPhoto = photos[0];
 ---
 
-<Layout>
+<Layout contactFooter={true}>
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div class="hero-copy">
@@ -144,62 +143,4 @@ const mainPhoto = photos[0];
     </div>
   </section>
   <Reviews />
-  <section
-    id="contatti"
-    class="contact section-pad"
-    aria-labelledby="contact-title"
-  >
-    <div class="wrap">
-      <div class="contact-heading">
-        <p class="eyebrow">FACCIAMO DUE PAROLE</p><h2 id="contact-title">
-          La tua auto?<br /><em>Parliamone.</em>
-        </h2><p>
-          Per informazioni sui servizi o per parlare<br class="desktop-break" />
-          della tua auto, chiama l’officina.
-        </p><a class="big-phone" href={b.tel}
-          >{b.phone} <span aria-hidden="true">↗</span></a
-        >
-      </div>
-      <div class="contact-grid">
-        <div>
-          <h3>Passa a trovarci</h3><p>{b.street}<br />{b.locality}</p><a
-            class="button button-outline"
-            href={b.directions}
-            target="_blank"
-            rel="noopener noreferrer"
-            >Ottieni indicazioni <span class="sr-only"
-              >(Google Maps, nuova scheda)</span
-            ><span aria-hidden="true">↗</span></a
-          >
-        </div><div>
-          <h3>I nostri orari</h3><dl class="hours">
-            {
-              b.hours.map(([day, time]) => (
-                <div>
-                  <>
-                    <dt>{day}</dt>
-                    <dd>{time}</dd>
-                  </>
-                </div>
-              ))
-            }
-          </dl>
-        </div><div>
-          <h3>Preferisci scrivere?</h3>
-          <a
-            class="button button-cream whatsapp-contact"
-            href={b.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            >Scrivici su WhatsApp <span class="sr-only"
-              >al {b.whatsapp} (nuova scheda)</span
-            ><span aria-hidden="true">↗</span></a
-          >
-          <p class="contact-note">WhatsApp: {b.whatsapp}</p>
-          <a class="email" href={`mailto:${b.email}`}>{b.email}</a>
-        </div>
-      </div>
-      <ExternalMap />
-    </div>
-  </section>
 </Layout>

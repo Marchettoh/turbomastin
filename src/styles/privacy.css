@@ -19,11 +19,6 @@
 .public-preview-notice strong {
   font-weight: 500;
 }
-.footer-bottom a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-}
 
 .whatsapp-contact {
   margin-bottom: 2px;

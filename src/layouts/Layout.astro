@@ -6,13 +6,15 @@ import "@fontsource/dm-sans/latin-500.css";
 import "../styles/global.css";
 import "../styles/privacy.css";
 import CookieConsent from "../components/CookieConsent.astro";
-import { business as b, release } from "../data/business";
+import { business as b } from "../data/business";
+import Footer from "../components/Footer.astro";
 const {
   title = "TurboMastin | Officina a San Pietro in Cariano",
   description = "Tagliandi, riparazioni, controllo centraline e preparazione alla revisione. TurboMastin, a San Pietro in Cariano. Chiama " +
     b.phone +
     ".",
   noindex = false,
+  contactFooter = false,
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const home = base;
@@ -143,49 +145,7 @@ const canonical = live
       </div>
     </header>
     <main id="contenuto" tabindex="-1"><slot /></main>
-    <footer class="footer">
-      <div class="wrap">
-        <div class="footer-top">
-          <a class="wordmark" href={home}
-            >Turbo<span>Mastin</span><i aria-hidden="true">.</i></a
-          ><p>Ci prendiamo cura del tuo veicolo.</p><a href="#contenuto"
-            >Torna su ↑</a
-          >
-        </div>
-        <div class="footer-bottom">
-          <p>{b.street}<br />{b.locality}</p><p>
-            <a href={b.tel}>{b.phone}</a><br /><a href={`mailto:${b.email}`}
-              >{b.email}</a
-            ><br /><a
-              href={b.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              >WhatsApp: {b.whatsapp}<span class="sr-only">
-                (nuova scheda)</span
-              ></a
-            >
-          </p><div>
-            <a href={`${base}privacy/`}>Privacy e cookie</a><br /><a
-              href={`${base}privacy/#cookies`}
-              data-consent-open
-              data-consent-footer>Preferenze cookie</a
-            ><br />{
-              !live && (
-                <span class="draft">
-                  Anteprima · Dati societari e fiscali da confermare
-                </span>
-              )
-            }{
-              live && (
-                <span>
-                  {release.legalName} · {release.fiscalDetails}
-                </span>
-              )
-            }
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Footer showContacts={contactFooter} />
     <CookieConsent />
     <script>
       const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");

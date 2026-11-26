@@ -852,46 +852,6 @@ picture {
 .contact a:focus-visible {
   outline-color: var(--brass);
 }
-.footer {
-  padding-block: 38px 28px;
-}
-.footer-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  padding-bottom: 28px;
-  border-bottom: 3px double var(--line);
-}
-.footer-top .wordmark {
-  color: var(--brand);
-}
-.footer-top p {
-  font-size: 12px;
-}
-.footer-top > a:last-child {
-  font-size: 12px;
-  padding-block: 10px;
-}
-.footer-bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1.2fr;
-  gap: 30px;
-  padding-top: 24px;
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.9;
-}
-.footer-bottom > div {
-  text-align: right;
-}
-.footer-bottom a:hover {
-  text-decoration: underline;
-  color: var(--brand);
-}
-.draft {
-  font-size: 10px;
-}
 .legal {
   max-width: 950px;
   padding-block: 65px 90px;
@@ -1189,23 +1149,6 @@ picture {
   .hours {
     max-width: 340px;
   }
-  .footer-top {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .footer-top p {
-    order: 3;
-    width: 100%;
-  }
-  .footer-bottom {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    font-size: 10px;
-  }
-  .footer-bottom > div {
-    grid-column: 1/-1;
-    text-align: left;
-  }
 }
 @media (max-width: 374px) {
   .wordmark {
@@ -1247,12 +1190,6 @@ picture {
   .big-phone {
     font-size: 25px;
     gap: 12px;
-  }
-  .footer-bottom {
-    grid-template-columns: 1fr;
-  }
-  .footer-bottom > div {
-    grid-column: auto;
   }
 }
 @media (prefers-reduced-motion: reduce) {

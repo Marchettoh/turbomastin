@@ -132,6 +132,34 @@ assert.match(
     .getAttribute("href"),
   /maps\/search\/\?api=1&query=/,
 );
+assert.equal(
+  await page.locator(".footer-credit a").getAttribute("href"),
+  "https://www.dallaviaweb.it",
+);
+assert.equal(await page.locator("#contatti").count(), 1);
+assert.notEqual(
+  await page
+    .locator("footer")
+    .evaluate((e) => getComputedStyle(e).backgroundColor),
+  await page
+    .locator(".footer-location")
+    .evaluate((e) => getComputedStyle(e).backgroundColor),
+);
+assert.equal(await page.locator("footer .external-map").count(), 0);
+assert.equal(
+  await page
+    .locator(".external-map")
+    .evaluate((e) =>
+      Boolean(
+        e.compareDocumentPosition(document.querySelector("footer")) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+    ),
+  true,
+);
+assert.equal(await page.locator(".footer-column").count(), 0);
+assert.equal(await page.locator("footer .whatsapp-contact").count(), 1);
+assert.equal(await page.locator("footer .contact-note").count(), 0);
 results.cookies = await context.cookies();
 results.storage = await page.evaluate(() => ({
   local: { ...localStorage },
