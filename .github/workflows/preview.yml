@@ -1,3 +1,4 @@
+# Workflow manuale: pubblica solo l’anteprima autorizzata, mai il rilascio definitivo.
 name: Anteprima temporanea GitHub Pages
 on:
   workflow_dispatch:
