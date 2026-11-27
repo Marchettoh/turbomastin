@@ -21,7 +21,7 @@ Non aprire direttamente index.html da disco: usare un server HTTP. Non rendere p
 - `src/data/business.ts`: nome, telefono, email, indirizzo, orari, link esterno, servizi e conferme di rilascio. Domenica: chiuso, confermato dal committente il 25/11/2026.
 - `src/pages/index.astro`: testi editoriali e struttura della homepage.
 - `src/layouts/Layout.astro`: metadati, header, footer, menu progressivo.
-- `src/components/Footer.astro`: compone richiamo telefonico petrolio compatto, sezione “Ci trovi qui” con mappa su avorio e infine footer completo sabbia caldo, cromaticamente distinto. La mappa è fuori dal tag footer e lo precede. La home abilita `contactFooter` sul Layout; il footer contiene indirizzo, orari, email e un solo collegamento WhatsApp con numero. Sulle pagine informative resta la chiusura compatta. Non duplicare i recapiti in una seconda sezione. Firma autorizzata: “Dalla Via Web”, collegata a https://www.dallaviaweb.it.
+- `src/components/Footer.astro`: compone richiamo telefonico petrolio compatto, sezione “Ci trovi qui” con mappa su avorio e infine footer completo sabbia caldo, cromaticamente distinto. La mappa è fuori dal tag footer e lo precede. La home abilita `contactFooter` sul Layout; il footer contiene indirizzo, orari, email e un solo collegamento WhatsApp con numero. Sulle pagine informative resta la chiusura compatta. Non duplicare i recapiti in una seconda sezione. Firma autorizzata: “Frame Lab”, collegata a https://www.framelabweb.it.
 - `src/styles/global.css`: token, tipografia, layout e responsive.
 - `src/components/Mechanical.astro`: illustrazione tecnica vettoriale originale, non foto dell’officina.
 - `src/pages/privacy.astro`: bozza da completare con un consulente/titolare, non consulenza legale.
